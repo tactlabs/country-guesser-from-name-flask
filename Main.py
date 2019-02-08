@@ -13,14 +13,21 @@ def home():
 @app.route('/result', methods=['POST'])
 def result():
     
-    city  = request.form.get('city')
+    name  = request.form.get('name')
+
+    country = get_country(name)
     
     user = {
-        'city' : city
+        'name' : name,
+        'country' : country
     }
     
     #return content
     return render_template('result.html', user=user)
+
+def get_country(name):
+    
+    return "Germany"
 
 if __name__ == '__main__':
     host = os.environ.get('IP', '127.0.0.1')
